@@ -1,6 +1,6 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
-import Callback from "./pages/Callback";
+import Callback from "./pages/Callbacks";
 import Home from "./pages/Home";
 
 function App() {
@@ -13,3 +13,4 @@ function App() {
 }
 
 export default App;
+  

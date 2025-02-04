@@ -13,23 +13,27 @@ SPOTIPY_CLIENT_ID = os.getenv("SPOTIPY_CLIENT_ID")
 SPOTIPY_CLIENT_SECRET = os.getenv("SPOTIPY_CLIENT_SECRET")
 SPOTIPY_REDIRECT_URI = os.getenv("SPOTIPY_REDIRECT_URI")
 
+# Configure Spotipy with a proxy (if needed)
 sp_oauth = SpotifyOAuth(
     client_id=SPOTIPY_CLIENT_ID,
     client_secret=SPOTIPY_CLIENT_SECRET,
     redirect_uri=SPOTIPY_REDIRECT_URI,
-    scope="playlist-modify-public user-library-read"
+    scope="playlist-modify-public user-library-read",
+    proxies={
+        "http": "http://proxy_address:8001",
+        "https": "http://proxy_address:8001",
+    }  # Replace proxy_address and port with your actual proxy settings
 )
 
+
 @app.get("/")
-def home():
+def read_root():
     return {"message": "Spotify Playlist Generator API"}
 
 @app.get("/login")
 def login():
     auth_url = sp_oauth.get_authorize_url()
-    print("Authorization URL:", auth_url)  # Log the URL
     return RedirectResponse(auth_url)
-
 
 @app.get("/callback")
 def callback(code: str):

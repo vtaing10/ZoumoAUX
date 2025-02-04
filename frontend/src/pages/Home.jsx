@@ -9,7 +9,7 @@ function Home() {
 
     const handleLogin = () => {
         // Redirect to backend's Spotify login
-        window.location.href = "http://127.0.0.1:8000/login";
+        window.location.href = "http://127.0.0.1:8001/login";
     };
 
     const handleGenerate = async () => {
